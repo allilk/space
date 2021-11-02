@@ -34,6 +34,7 @@
 	});
 </script>
 
+<div id="title">space</div>
 <div id="button-container">
 	<button id="authButton">
 		{$isAuthenticated ? 'Logout' : 'Authenticate'}
@@ -62,3 +63,12 @@
 		{formatBytes($gdStorageQuota.usage)} / {formatBytes($gdStorageQuota.maxSize)}
 	</div>
 </section>
+
+<br />
+<br />
+<div style="text-align: center;">
+	Swimming in milk 🥛
+	<br />
+	<br />
+	<a href="https://github.com/allilk/space">@allilk</a>
+</div>
