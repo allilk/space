@@ -1,4 +1,4 @@
-import { DISCOVERY_DOCS, SCOPES, isAuthenticated } from '../stores';
+import { DISCOVERY_DOCS, SCOPES, gdAuthenticated } from '../stores';
 
 class gdClient {
 	async initiate() {
@@ -17,7 +17,7 @@ class gdClient {
 
 		const handleAuth = () => {
 			// If logged out, login & vice versa
-			isAuthenticated.subscribe((auth) => {
+			gdAuthenticated.subscribe((auth) => {
 				if (!auth) {
 					gapi.auth2.getAuthInstance().signIn();
 				} else {
@@ -28,9 +28,9 @@ class gdClient {
 		const updateSigninStatus = async (isSignedIn) => {
 			// Update the sign in status store
 			if (isSignedIn) {
-				isAuthenticated.set(true);
+				gdAuthenticated.set(true);
 			} else {
-				isAuthenticated.set(false);
+				gdAuthenticated.set(false);
 			}
 		};
 		// Initiate our oauth client

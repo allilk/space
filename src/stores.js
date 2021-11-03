@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
 
-const isAuthenticated = writable(false);
+const gdAuthenticated = writable(false);
 const gdStorageQuota = writable({
+	load: false,
 	usage: 0,
 	usageInDrive: 0,
 	usageInDriveTrash: 0,
@@ -11,4 +12,4 @@ const gdStorageQuota = writable({
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'];
 const SCOPES = 'https://www.googleapis.com/auth/drive.readonly profile';
 
-export { isAuthenticated, gdStorageQuota, DISCOVERY_DOCS, SCOPES };
+export { gdAuthenticated, gdStorageQuota, DISCOVERY_DOCS, SCOPES };
