@@ -1,7 +1,18 @@
 <script>
-	import Storage from './Storage.svelte';
+	import { onMount } from 'svelte';
+
 	import { gdAuthenticated, gdStorageQuota } from '../stores';
+
 	import { getCurrentStorage } from '../helpers/storage';
+	import gdClient from '../helpers/authenticate';
+
+	import Storage from './Storage.svelte';
+
+	const gd_client = new gdClient();
+
+	onMount(() => {
+		gd_client.initiate();
+	});
 
 	gdAuthenticated.subscribe((auth) => {
 		if (auth) {

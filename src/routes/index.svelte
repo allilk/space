@@ -1,27 +1,44 @@
 <script>
-	import { onMount } from 'svelte';
 	import { gdAuthenticated } from '../stores';
-
-	import gdClient from '../helpers/authenticate';
+	import { writable } from 'svelte/store';
 
 	import MyDrive from '../components/MyDrive.svelte';
+	import { onMount } from 'svelte';
 
-	const gd_client = new gdClient();
+	const driveStatus = writable();
 
+	const getDriveStatus = () => {
+		const status = localStorage.getItem('driveStatus');
+		return JSON.parse(status);
+	};
+	const setDriveStatus = () => {
+		let status = true;
+		if (getDriveStatus()) {
+			status = false;
+		}
+		localStorage.setItem('driveStatus', status);
+		driveStatus.set(getDriveStatus());
+	};
 	onMount(() => {
-		gd_client.initiate();
+		driveStatus.set(getDriveStatus());
 	});
 </script>
 
 <div id="title">space</div>
+
 <div id="button-container">
-	<button id="authButton">
-		{$gdAuthenticated ? 'Logout' : 'Authenticate'}
+	<button on:click={setDriveStatus}>
+		<img width="18px" height="16px" src="drive.png" alt="" />
 	</button>
 </div>
-
-<MyDrive />
-
+{#if $driveStatus !== undefined && $driveStatus === true}
+	<div id="button-container">
+		<button id="authButton">
+			{$gdAuthenticated ? 'Logout' : 'Authenticate'}
+		</button>
+	</div>
+	<MyDrive />
+{/if}
 <br />
 <br />
 <div style="text-align: center;">

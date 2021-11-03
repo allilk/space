@@ -31,7 +31,6 @@
 }
 button {
 	background-color: white;
-	width: 80%;
 	padding: 0.8rem;
 	color: #328dfa;
 	letter-spacing: 0.5px;
@@ -39,8 +38,11 @@ button {
 	border-radius: 0.5rem;
 	border: 2px transparent solid;
 }
-
+#authButton {
+	width: 80%;
+}
 button:hover {
+	cursor: pointer;
 	transition: 500ms;
 	border-color: #328dfa;
 }
@@ -83,7 +85,7 @@ section div:first-child {
 
 @media (min-width: 768px) {
 	section,
-	button {
+	#authButton {
 		width: 50%;
 	}
 }
